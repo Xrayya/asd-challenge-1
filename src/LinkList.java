@@ -4,44 +4,45 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
 
     @Override
     public boolean enqueue(T data) {
-        // TODO: Auto-generated method stub
-        return false;
+        this.addFirst(data);
+
+        return true;
     }
 
     @Override
     public Node<T> dequeue() {
-        // TODO: Auto-generated method stub
-        return null;
+        return removeLast();
     }
 
     @Override
     public void listAllElements() {
-        // TODO: Auto-generated method stub
+        Node<T> currentNode = this.head;
+        while (currentNode != null) {
+            System.out.println(currentNode.toString());
+            currentNode = currentNode.next;
+        }
 
     }
 
     @Override
     public boolean push(T data) {
-        // TODO: Auto-generated method stub
-        return false;
+        this.addLast(data);
+        return true;
     }
 
     @Override
     public Node<T> pop() {
-        // TODO: Auto-generated method stub
-        return null;
+        return removeLast();
     }
 
     @Override
     public Node<T> peek() {
-        // TODO: Auto-generated method stub
-        return null;
+        return this.tail;
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO: Auto-generated method stub
-        return false;
+        return this.head == null;
     }
 
     @Override
@@ -60,8 +61,16 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
 
     @Override
     public Node<T> addFirst(T data) {
-        // TODO: Auto-generated method stub
-        return null;
+        Node<T> node = new Node<T>(data);
+        if (this.head == null && this.tail == null) {
+            this.head = node;
+            this.tail = node;
+            return node;
+        }
+        this.head.prev = node;
+        node.next = this.head;
+        this.head = node;
+        return node;
     }
 
     @Override
@@ -78,50 +87,105 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
 
     @Override
     public void forwardTraverse() {
-        // TODO: Auto-generated method stub
+        Node<T> currentNode = this.head;
+        String s = "";
 
+        while (currentNode != null) {
+            s += (currentNode.next != null)
+                    ? currentNode.toString() + " - "
+                    : currentNode.toString();
+            currentNode = currentNode.next;
+        }
+
+        System.out.println(s);
     }
 
     @Override
     public void reverseTraverse() {
-        // TODO: Auto-generated method stub
+        Node<T> currentNode = this.tail;
 
+        String s = "";
+
+        while (currentNode != null) {
+            s += (currentNode.prev != null)
+                    ? currentNode.toString() + " - "
+                    : currentNode.toString();
+            currentNode = currentNode.prev;
+        }
+
+        System.out.println(s);
     }
 
     @Override
     public Node<T> find(T data) {
-        // TODO: Auto-generated method stub
+        Node<T> currentNode = this.head;
+
+        while (currentNode != null) {
+            if (currentNode.data == data || currentNode.data.equals(data)) {
+                return currentNode;
+            }
+            currentNode = currentNode.next;
+        }
+
         return null;
     }
 
     @Override
     public Node<T> removeFirst() {
-        // TODO: Auto-generated method stub
-        return null;
+        Node<T> tmp = this.head;
+
+        this.head = tmp.next;
+        this.head.prev.next = null;
+        this.head.prev = null;
+
+        return tmp;
     }
 
     @Override
     public Node<T> removeLast() {
-        // TODO: Auto-generated method stub
-        return null;
+        Node<T> tmp = this.tail;
+
+        this.tail = tmp.prev;
+        this.tail.next.prev = null;
+        this.tail.next = null;
+
+        return tmp;
     }
 
     @Override
     public Node<T> remove(T data) {
-        // TODO: Auto-generated method stub
-        return null;
+        Node<T> tmp = this.find(data);
+
+        tmp.prev.next = tmp.next;
+        tmp.next.prev = tmp.prev;
+
+        tmp.next = tmp.prev = null;
+
+        return tmp;
     }
 
     @Override
     public Node<T> removeAfter(T data) {
-        // TODO: Auto-generated method stub
-        return null;
+        Node<T> tmp = find(data).next;
+
+        tmp.prev.next = tmp.next;
+        tmp.next.prev = tmp.prev;
+
+        tmp.next = tmp.prev = null;
+
+        return tmp;
     }
 
     @Override
     public Node<T> removeBefore(T data) {
-        // TODO: Auto-generated method stub
-        return null;
+        Node<T> tmp = find(data).prev;
+
+        tmp.prev.next = tmp.next;
+        tmp.next.prev = tmp.prev;
+
+        tmp.next = tmp.prev = null;
+
+        return tmp;
     }
 
     @Override
