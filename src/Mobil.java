@@ -1,7 +1,7 @@
-public class Mobil {
+public class Mobil implements Comparable<Mobil> {
     String tipe;
     String merk;
-    int tahun;
+    Integer tahun;
 
     public Mobil(String merk, String tipe, int tahun) {
         this.tipe = tipe;
@@ -12,5 +12,18 @@ public class Mobil {
     @Override
     public String toString() {
         return this.merk + " " + this.tipe + " (" + this.tahun + ")";
+    }
+
+    @Override
+    public int compareTo(Mobil anotherMobil) {
+        int output = this.merk.compareTo(anotherMobil.merk);
+        if (output == 0) {
+            output = this.tipe.compareTo(anotherMobil.tipe);
+        }
+        if (output == 0) {
+            output = this.tahun.compareTo(anotherMobil.tahun);
+        }
+
+        return output;
     }
 }
