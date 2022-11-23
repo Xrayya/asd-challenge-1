@@ -26,4 +26,11 @@ public class Mobil implements Comparable<Mobil> {
 
         return output;
     }
+
+    @Override
+    public boolean equals(Object anotherMobil) {
+        Mobil otherMobil = (Mobil) anotherMobil;
+        return this.tipe.equals(otherMobil.tipe) && this.merk.equals(otherMobil.merk)
+                && this.tahun.equals(otherMobil.tahun);
+    }
 }
