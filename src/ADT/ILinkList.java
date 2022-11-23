@@ -1,3 +1,5 @@
+package ADT;
+
 public interface ILinkList<T> {
     boolean isEmpty();
 

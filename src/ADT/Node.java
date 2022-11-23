@@ -1,3 +1,5 @@
+package ADT;
+
 public class Node<T> {
     Node<T> next;
     Node<T> prev;

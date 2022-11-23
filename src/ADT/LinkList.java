@@ -1,3 +1,5 @@
+package ADT;
+
 public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
     Node<T> head;
     Node<T> tail;

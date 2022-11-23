@@ -1,6 +1,11 @@
+package ADT;
+
 public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T> {
     NodeArray<T> head;
     NodeArray<T> tail;
+
+    public PriorityList() {
+    }
 
     public PriorityList(T data) {
         NodeArray<T> node = new NodeArray<T>(data);
@@ -40,6 +45,12 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T> 
     public boolean enqueue(T data) {
         NodeArray<T> node = new NodeArray<T>(data);
         node.index = tail.index + 1;
+
+        if (this.head == null && this.tail == null) {
+            this.head = node;
+            this.tail = node;
+            return true;
+        }
 
         tail.next = node;
         node.prev = tail;
