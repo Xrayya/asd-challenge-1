@@ -9,9 +9,9 @@ public interface ILinkList<T> {
 
     Node<T> addFirst(T data);
 
-    Node<T> addAfter(T data);
+    Node<T> addAfter(Node<T> node, T data);
 
-    Node<T> addBefore(T data);
+    Node<T> addBefore(Node<T> node, T data);
 
     Node<T> find(T data);
 

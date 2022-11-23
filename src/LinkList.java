@@ -74,14 +74,26 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
     }
 
     @Override
-    public Node<T> addAfter(T data) {
-        // TODO: Auto-generated method stub
-        return null;
+    public Node<T> addAfter(Node<T> node, T data) {
+        Node<T> newNode = new Node<>(data);
+
+        node.next.prev = newNode;
+        newNode.next = node.next;
+        newNode.prev = node;
+        node.next = newNode;
+
+        return newNode;
     }
 
     @Override
-    public Node<T> addBefore(T data) {
-        // TODO: Auto-generated method stub
+    public Node<T> addBefore(Node<T> node, T data) {
+        Node<T> newNode = new Node<>(data);
+
+        node.prev.next = newNode;
+        newNode.prev = node.prev;
+        newNode.next = node;
+        node.prev = newNode;
+
         return null;
     }
 
@@ -121,7 +133,7 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
         Node<T> currentNode = this.head;
 
         while (currentNode != null) {
-            if (currentNode.data == data || currentNode.data.equals(data)) {
+            if (currentNode.data.equals(data)) {
                 return currentNode;
             }
             currentNode = currentNode.next;
