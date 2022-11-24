@@ -1,7 +1,7 @@
 package IS;
 
 public class Service {
-    private String name;
+    private String serviceName;
     private int id;
     private int price;
     private String description;
@@ -20,7 +20,7 @@ public class Service {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.serviceName = name;
     }
 
     public void setPrice(int price) {
@@ -32,7 +32,7 @@ public class Service {
     }
 
     public String getName() {
-        return name;
+        return serviceName;
     }
 
     public int getPrice() {
@@ -52,7 +52,11 @@ public class Service {
     }
 
     public String toString() {
-        return "Name\t\t: " + this.name + "\n" +
-                "Price\t\t: " + this.getFormattedPrice() + "\n";
+        String output = "";
+
+        output += String.format("%-15s : %s\n", "Service Name", this.serviceName);
+        output += String.format("%-15s : %s\n", "Price", this.getFormattedPrice());
+
+        return output;
     }
 }
