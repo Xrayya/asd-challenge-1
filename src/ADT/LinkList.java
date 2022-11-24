@@ -1,6 +1,8 @@
 package ADT;
 
-public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
+import java.util.Iterator;
+
+public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable<T> {
     Node<T> head;
     Node<T> tail;
 
@@ -24,6 +26,14 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
             currentNode = currentNode.next;
         }
 
+    }
+
+    public Node<T> getFirst() {
+        return this.head;
+    }
+
+    public Node<T> getLast() {
+        return this.tail;
     }
 
     @Override
@@ -213,5 +223,29 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T> {
             cursor = cursor.next;
         }
         return s + "]";
+    }
+
+    private class CustomIterator<E> implements Iterator<E> {
+        private Node<E> currentNode;
+
+        CustomIterator(LinkList<E> list) {
+            currentNode = list.getFirst();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.currentNode != null;
+        }
+
+        @Override
+        public E next() {
+            this.currentNode = this.currentNode.next;
+            return this.currentNode.data;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new CustomIterator<T>(this);
     }
 }

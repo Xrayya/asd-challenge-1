@@ -1,6 +1,8 @@
 package ADT;
 
-public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T> {
+import java.util.Iterator;
+
+public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>, Iterable<T> {
     NodeArray<T> head;
     NodeArray<T> tail;
 
@@ -111,6 +113,14 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T> 
         return null;
     }
 
+    public NodeArray<T> getFirst() {
+        return this.head;
+    }
+
+    public NodeArray<T> getLast() {
+        return this.tail;
+    }
+
     @Override
     public NodeArray<T> getParentOf(int index) {
         return getItemAt((index - 1) / 2);
@@ -169,5 +179,29 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T> 
         T tmp = node1.data;
         node1.data = node2.data;
         node2.data = tmp;
+    }
+
+    private class CustomIterator<E extends Comparable<E>> implements Iterator<E> {
+        private NodeArray<E> currentNode;
+
+        CustomIterator(PriorityList<E> list) {
+            currentNode = list.getFirst();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.currentNode != null;
+        }
+
+        @Override
+        public E next() {
+            this.currentNode = (NodeArray<E>) this.currentNode.next;
+            return this.currentNode.data;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new CustomIterator<T>(this);
     }
 }
