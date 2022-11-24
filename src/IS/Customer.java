@@ -1,14 +1,14 @@
 package IS;
 
-import ADT.IQueue;
+import ADT.ILinkList;
 import ADT.LinkList;
 
 public class Customer implements Comparable<Customer> {
     private String name;
     private Integer id;
     private Car car;
-    private IQueue<Service> serviceList;
-    boolean isVIP;
+    private LinkList<Service> serviceList;
+    private boolean isVIP;
 
     public Customer(String name, Car car) {
         this.name = name;
@@ -18,7 +18,7 @@ public class Customer implements Comparable<Customer> {
         this.id = id++;
     }
 
-    public Customer(String name, Car car, IQueue<Service> serviceList) {
+    public Customer(String name, Car car, LinkList<Service> serviceList) {
         this.name = name;
         this.car = car;
         this.serviceList = serviceList;
@@ -26,7 +26,7 @@ public class Customer implements Comparable<Customer> {
         this.id = id++;
     }
 
-    public Customer(String name, Car car, IQueue<Service> serviceList, boolean isVIP) {
+    public Customer(String name, Car car, LinkList<Service> serviceList, boolean isVIP) {
         this.name = name;
         this.car = car;
         this.serviceList = serviceList;
@@ -54,11 +54,11 @@ public class Customer implements Comparable<Customer> {
         this.car = car;
     }
 
-    public IQueue<Service> getServiceList() {
+    public ILinkList<Service> getServiceList() {
         return serviceList;
     }
 
-    public void setServiceList(IQueue<Service> serviceList) {
+    public void setServiceList(LinkList<Service> serviceList) {
         this.serviceList = serviceList;
     }
 
@@ -72,10 +72,42 @@ public class Customer implements Comparable<Customer> {
 
     @Override
     public int compareTo(Customer anotherCustomer) {
-        if (isVIP()) {
-            return this.id.compareTo(anotherCustomer.id);
+        return isVIP ? this.id.compareTo(anotherCustomer.id) : 0;
+    }
+
+    private String getFormattedServiceList() {
+        String output = "";
+        output += "--------------------------------------------------";
+        output += "             List of Ordered Services             ";
+        output += "--------------------------------------------------";
+        for (Service service : serviceList) {
+            output += service.toString();
+            output += "--------------------------------------------------";
         }
 
-        return 0;
+        return output;
     }
+
+    public int getTotalPrice() {
+        int total = 0;
+        for (Service service : serviceList) {
+            total += service.getPrice();
+        }
+
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        String output = "";
+
+        output += String.format("%-15s : %s\n", "Customer Id", this.id);
+        output += String.format("%-15s : %s %s\n", "Name", this.name, this.isVIP ? "(VIP)" : "");
+        output += String.format("%-15s : %s\n", "Car", this.car.toString());
+        output += this.getFormattedServiceList();
+        output += String.format("%-15s : %s\n", "Total Bill", Helper.getFormattedPrice(this.getTotalPrice()));
+
+        return output;
+    }
+
 }
