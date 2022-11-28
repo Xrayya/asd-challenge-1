@@ -1,5 +1,3 @@
-package ADT;
-
 public class NodeArray<T> extends Node<T> {
     int index;
 

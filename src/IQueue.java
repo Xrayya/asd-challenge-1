@@ -1,5 +1,3 @@
-package ADT;
-
 public interface IQueue<T> {
     void listAllElements();
 

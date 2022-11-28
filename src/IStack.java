@@ -1,5 +1,3 @@
-package ADT;
-
 public interface IStack<T> {
     void listAllElements();
 

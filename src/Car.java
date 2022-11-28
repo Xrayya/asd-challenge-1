@@ -1,5 +1,3 @@
-package IS;
-
 public class Car implements Comparable<Car> {
     String brand;
     String tipe;

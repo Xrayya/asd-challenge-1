@@ -1,5 +1,3 @@
-package ADT;
-
 import java.util.Iterator;
 
 public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable<T> {

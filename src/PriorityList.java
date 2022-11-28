@@ -1,5 +1,3 @@
-package ADT;
-
 import java.util.Iterator;
 
 public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>, Iterable<T> {

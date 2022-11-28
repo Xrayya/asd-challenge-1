@@ -1,5 +1,3 @@
-package ADT;
-
 public interface IPriorityQueue<T> {
     void listAllElements();
 
