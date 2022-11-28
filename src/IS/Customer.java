@@ -10,28 +10,10 @@ public class Customer implements Comparable<Customer> {
     private LinkList<Service> serviceList;
     private boolean isVIP;
 
-    public Customer(String name, Car car) {
-        this.name = name;
-        this.car = car;
+    public Customer() {
+        this.id = id++;
         this.serviceList = new LinkList<>();
         this.isVIP = false;
-        this.id = id++;
-    }
-
-    public Customer(String name, Car car, LinkList<Service> serviceList) {
-        this.name = name;
-        this.car = car;
-        this.serviceList = serviceList;
-        this.isVIP = false;
-        this.id = id++;
-    }
-
-    public Customer(String name, Car car, LinkList<Service> serviceList, boolean isVIP) {
-        this.name = name;
-        this.car = car;
-        this.serviceList = serviceList;
-        this.isVIP = isVIP;
-        this.id = id++;
     }
 
     public String getName() {
@@ -77,12 +59,19 @@ public class Customer implements Comparable<Customer> {
 
     private String getFormattedServiceList() {
         String output = "";
-        output += "--------------------------------------------------";
-        output += "             List of Ordered Services             ";
-        output += "--------------------------------------------------";
+        output += Helper.getSingleLineSeparator();
+        output += "             List of Ordered Services             \n";
+        output += Helper.getSingleLineSeparator();
+
+        if (serviceList.isEmpty()) {
+            output += "                No services ordered               \n";
+            output += Helper.getSingleLineSeparator();
+            return output;
+        }
+
         for (Service service : serviceList) {
             output += service.toString();
-            output += "--------------------------------------------------";
+            output += Helper.getSingleLineSeparator();
         }
 
         return output;

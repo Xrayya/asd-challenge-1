@@ -47,17 +47,15 @@ class Helper {
         return services;
     }
 
-    // static boolean authentication(String username, String password) {
-    // // Rubah Kode di sini
-    // for (int i = 0; i < Main.admins.length; i++) {
-    // if (Main.admins[i].isMatch(username, password)) {
-    // return true;
-    // }
-    // }
-    // return false;
-    // }
-
     static String getFormattedPrice(int price) {
         return String.format(Locale.ITALY, "Rp. %,d", price);
+    }
+
+    public static String getSingleLineSeparator() {
+        return "-----------------------------------------------------\n";
+    }
+
+    public static String getDoubleLineSeparator() {
+        return "=====================================================\n";
     }
 }
