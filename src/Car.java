@@ -55,9 +55,13 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public boolean equals(Object anotherMobil) {
-        Car otherMobil = (Car) anotherMobil;
-        return this.tipe.equals(otherMobil.tipe) && this.brand.equals(otherMobil.brand)
-                && this.yearOfRelease.equals(otherMobil.yearOfRelease);
+    public boolean equals(Object o) {
+        if (!(o instanceof Car)) {
+            return false;
+        }
+
+        Car anotherCar = (Car) o;
+        return this.tipe.equals(anotherCar.tipe) && this.brand.equals(anotherCar.brand)
+                && this.yearOfRelease.equals(anotherCar.yearOfRelease);
     }
 }
