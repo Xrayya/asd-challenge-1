@@ -63,7 +63,7 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
 
     @Override
     public NodeArray<T> dequeue() {
-        this.swap(this.head, this.tail);
+        this.swapData(this.head, this.tail);
 
         NodeArray<T> node = this.tail;
         this.tail = (NodeArray<T>) node.prev;
@@ -76,7 +76,7 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
     }
 
     public NodeArray<T> removeAt(int index) {
-        this.swap(this.getItemAt(index), this.tail);
+        this.swapData(this.getItemAt(index), this.tail);
 
         NodeArray<T> node = this.tail;
         this.tail = (NodeArray<T>) node.prev;
@@ -150,7 +150,7 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
         NodeArray<T> parentNode = this.getParentOf(index);
 
         if (currentNode.data.compareTo(parentNode.data) < 0) {
-            swap(currentNode, parentNode);
+            swapData(currentNode, parentNode);
         }
 
         this.shiftUp(parentNode.index);
@@ -162,18 +162,18 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
         NodeArray<T> rightChild = this.getRightChildOf(index);
 
         if (currentNode.data.compareTo(leftChild.data) > 0) {
-            swap(currentNode, leftChild);
+            swapData(currentNode, leftChild);
         }
 
         if (currentNode.data.compareTo(leftChild.data) > 0) {
-            swap(currentNode, leftChild);
+            swapData(currentNode, leftChild);
         }
 
         this.shiftDown(rightChild.index);
         this.shiftDown(leftChild.index);
     }
 
-    private void swap(NodeArray<T> node1, NodeArray<T> node2) {
+    private void swapData(NodeArray<T> node1, NodeArray<T> node2) {
         T tmp = node1.data;
         node1.data = node2.data;
         node2.data = tmp;

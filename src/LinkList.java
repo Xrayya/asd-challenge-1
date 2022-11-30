@@ -93,6 +93,10 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
 
     @Override
     public Node<T> addAfter(Node<T> node, T data) {
+        if (node.equals(this.tail)) {
+            return this.addLast(data);
+        }
+
         Node<T> newNode = new Node<>(data);
 
         node.next.prev = newNode;
@@ -107,6 +111,10 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
 
     @Override
     public Node<T> addBefore(Node<T> node, T data) {
+        if (node.equals(this.head)) {
+            return this.addFirst(data);
+        }
+
         Node<T> newNode = new Node<>(data);
 
         node.prev.next = newNode;

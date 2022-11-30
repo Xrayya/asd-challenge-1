@@ -2,7 +2,12 @@ public class Car implements Comparable<Car> {
     String brand;
     String tipe;
     Integer yearOfRelease;
-    String vehicleNumber;
+
+    public Car(String brand, String tipe, Integer yearOfRelease) {
+        this.brand = brand;
+        this.tipe = tipe;
+        this.yearOfRelease = yearOfRelease;
+    }
 
     public String getTipe() {
         return tipe;
@@ -26,14 +31,6 @@ public class Car implements Comparable<Car> {
 
     public void setYearOfRelease(Integer yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
-    }
-
-    public String getVehicleNumber() {
-        return vehicleNumber;
-    }
-
-    public void setVehicleNumber(String vehicleNumber) {
-        this.vehicleNumber = vehicleNumber;
     }
 
     @Override
