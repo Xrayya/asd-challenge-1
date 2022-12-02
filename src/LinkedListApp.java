@@ -11,9 +11,13 @@ public class LinkedListApp {
         // ILinkList
         ILinkList<Car> ill = new LinkList<>();
 
+        System.out.println(ill.isEmpty());
+
         ill.addLast(car1);
         ill.addLast(car2);
         System.out.println(ill);
+
+        System.out.println(ill.isEmpty());
 
         ill.addFirst(car3);
         System.out.println(ill);
@@ -26,5 +30,25 @@ public class LinkedListApp {
 
         ill.addBefore(ill.find(new Car("Honda", "Jazz", 2004)), car5);
         System.out.println(ill);
+
+        ill.forwardTraverse();
+        ill.reverseTraverse();
+
+        System.out.println(ill.removeFirst());
+        System.out.println(ill.removeLast());
+
+        System.out.println(ill);
+
+        System.out.println(ill.removeAfter(car5));
+
+        System.out.println(ill);
+
+        System.out.println(ill.removeBefore(car2));
+
+        System.out.println(ill);
+
+        System.out.println(ill.remove(new Car("Toyota", "GR Yaris", 2022)));
+
+        System.out.println(ill.isEmpty());
     }
 }
