@@ -176,6 +176,11 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
     public Node<T> removeFirst() {
         Node<T> tmp = this.head;
 
+        if (this.head.equals(this.tail)) {
+            this.head = this.tail = null;
+            return tmp;
+        }
+
         this.head = tmp.next;
         this.head.prev.next = null;
         this.head.prev = null;
@@ -189,6 +194,11 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
     public Node<T> removeLast() {
         Node<T> tmp = this.tail;
 
+        if (this.head.equals(this.tail)) {
+            this.head = this.tail = null;
+            return tmp;
+        }
+
         this.tail = tmp.prev;
         this.tail.next.prev = null;
         this.tail.next = null;
@@ -201,6 +211,17 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
     @Override
     public Node<T> remove(T data) {
         Node<T> tmp = this.find(data);
+
+        if (this.head.equals(this.tail)) {
+            this.head = this.tail = null;
+            return tmp;
+        }
+
+        if (tmp.equals(this.head)) {
+            return this.removeFirst();
+        } else if (tmp.equals(this.tail)) {
+            return this.removeLast();
+        }
 
         tmp.prev.next = tmp.next;
         tmp.next.prev = tmp.prev;
@@ -216,6 +237,12 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
     public Node<T> removeAfter(T data) {
         Node<T> tmp = find(data).next;
 
+        if (tmp == null) {
+            return null;
+        } else if (tmp.equals(this.tail)) {
+            return this.removeLast();
+        }
+
         tmp.prev.next = tmp.next;
         tmp.next.prev = tmp.prev;
 
@@ -229,6 +256,12 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
     @Override
     public Node<T> removeBefore(T data) {
         Node<T> tmp = find(data).prev;
+
+        if (tmp == null) {
+            return null;
+        } else if (tmp.equals(this.head)) {
+            return this.removeFirst();
+        }
 
         tmp.prev.next = tmp.next;
         tmp.next.prev = tmp.prev;
