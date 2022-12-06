@@ -112,13 +112,51 @@ public class LinkedListApp {
         // System.out.println(car);
         // }
 
-        // IPriorityList
-        PriorityList<Car> pl = new PriorityList<>();
-
-        pl.enqueue(car3);
-        pl.enqueue(car1);
-        pl.enqueue(car2);
-
-        System.out.println(pl);
+        // // IPriorityList
+        // PriorityList<Car> pl = new PriorityList<>();
+        //
+        // pl.enqueue(car3);
+        // pl.enqueue(car1);
+        // pl.enqueue(car2);
+        // pl.enqueue(car4);
+        // pl.enqueue(car5);
+        //
+        // System.out.println(pl);
+        //
+        // pl.listAllElements();
+        //
+        // System.out.println();
+        //
+        // System.out.println(pl.getItemAt(3));
+        //
+        // System.out.println();
+        //
+        // System.out.println(pl.getParentOf(3));
+        // System.out.println(pl.getParentOf(4));
+        // System.out.println(pl.getParentOf(2));
+        //
+        // System.out.println();
+        //
+        // System.out.println(pl.getLeftChildOf(0));
+        // System.out.println(pl.getRightChildOf(1));
+        //
+        // System.out.println();
+        //
+        // for (Car car : pl) {
+        //     System.out.printf("%s - ", car);
+        // }
+        //
+        // System.out.println("\n");
+        //
+        // System.out.println(pl.peek());
+        // pl.dequeue();
+        //
+        // System.out.println(pl.dequeue());
+        // System.out.println(pl.dequeue());
+        //
+        // System.out.println(pl.peek());
+        // pl.dequeue();
+        //
+        // System.out.println(pl.dequeue());
     }
 }
