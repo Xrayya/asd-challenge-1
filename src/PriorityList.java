@@ -44,13 +44,16 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
     @Override
     public boolean enqueue(T data) {
         NodeArray<T> node = new NodeArray<T>(data);
-        node.index = tail.index + 1;
 
         if (this.head == null && this.tail == null) {
+            node.index = 0;
+
             this.head = node;
             this.tail = node;
             return true;
         }
+
+        node.index = tail.index + 1;
 
         tail.next = node;
         node.prev = tail;
@@ -101,7 +104,8 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
 
         NodeArray<T> tmp = this.head;
 
-        while (tmp.next != null) {
+        while (tmp != null) {
+
             if (tmp.index == index) {
                 return tmp;
             }
@@ -121,7 +125,7 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
 
     @Override
     public NodeArray<T> getParentOf(int index) {
-        return getItemAt((index - 1) / 2);
+        return (index - 1) / 2 == index ? null : getItemAt((index - 1) / 2);
     }
 
     @Override
@@ -149,11 +153,14 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
         NodeArray<T> currentNode = this.getItemAt(index);
         NodeArray<T> parentNode = this.getParentOf(index);
 
-        if (currentNode.data.compareTo(parentNode.data) < 0) {
-            swapData(currentNode, parentNode);
+        if (parentNode == null) {
+            return;
         }
 
-        this.shiftUp(parentNode.index);
+        if (currentNode.data.compareTo(parentNode.data) < 0) {
+            swapData(currentNode, parentNode);
+            this.shiftUp(parentNode.index);
+        }
     }
 
     private void shiftDown(int index) {
@@ -188,13 +195,14 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
 
         @Override
         public boolean hasNext() {
-            return this.currentNode != null;
+            return this.currentNode.next != null;
         }
 
         @Override
         public E next() {
+            NodeArray<E> output = this.currentNode;
             this.currentNode = (NodeArray<E>) this.currentNode.next;
-            return this.currentNode.data;
+            return output.data;
         }
     }
 
