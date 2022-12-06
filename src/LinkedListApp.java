@@ -8,47 +8,108 @@ public class LinkedListApp {
         Car car4 = new Car("Daihatsu", "Terios", 2015);
         Car car5 = new Car("Daihatsu", "Luxio", 2009);
 
-        // ILinkList
-        ILinkList<Car> ill = new LinkList<>();
+        // // ILinkList
+        // ILinkList<Car> ill = new LinkList<>();
+        //
+        // System.out.println(ill.isEmpty());
+        //
+        // ill.addLast(car1);
+        // ill.addLast(car2);
+        // System.out.println(ill);
+        //
+        // System.out.println(ill.isEmpty());
+        //
+        // ill.addFirst(car3);
+        // System.out.println(ill);
+        //
+        // Node<Car> searchedCar = ill.find(new Car("Toyota", "GR Yaris", 2022));
+        // System.out.println(searchedCar);
+        //
+        // ill.addAfter(searchedCar, car4);
+        // System.out.println(ill);
+        //
+        // ill.addBefore(ill.find(new Car("Honda", "Jazz", 2004)), car5);
+        // System.out.println(ill);
+        //
+        // ill.forwardTraverse();
+        // ill.reverseTraverse();
+        //
+        // System.out.println(ill.removeFirst());
+        // System.out.println(ill.removeLast());
+        //
+        // System.out.println(ill);
+        //
+        // System.out.println(ill.removeAfter(car5));
+        //
+        // System.out.println(ill);
+        //
+        // System.out.println(ill.removeBefore(car2));
+        //
+        // System.out.println(ill);
+        //
+        // System.out.println(ill.remove(new Car("Toyota", "GR Yaris", 2022)));
+        //
+        // System.out.println(ill.isEmpty());
 
-        System.out.println(ill.isEmpty());
+        // // IStack
+        // IStack<Car> stack = new LinkList<>();
+        //
+        // stack.push(car1);
+        // stack.push(car2);
+        // stack.push(car3);
+        //
+        // System.out.println(stack);
+        //
+        // System.out.println(stack.pop());
+        // System.out.println(stack);
+        //
+        // System.out.println(stack.peek());
+        //
+        // System.out.println(stack.pop());
+        // System.out.println(stack.pop());
+        //
+        // System.out.println(stack);
+        // System.out.println(stack.isEmpty());
 
-        ill.addLast(car1);
-        ill.addLast(car2);
-        System.out.println(ill);
+        // // IQueue
+        // IQueue<Car> queue = new LinkList<>();
+        // queue.enqueue(car1);
+        // queue.enqueue(car2);
+        // queue.enqueue(car3);
+        //
+        // System.out.println(queue);
+        //
+        // System.out.println(queue.dequeue());
+        // System.out.println(queue);
+        //
+        // System.out.println(queue.dequeue());
+        // System.out.println(queue.dequeue());
+        //
+        // System.out.println(queue);
+        // System.out.println(queue.isEmpty());
 
-        System.out.println(ill.isEmpty());
+        LinkList<Car> linkList = new LinkList<>();
 
-        ill.addFirst(car3);
-        System.out.println(ill);
+        linkList.addLast(car1);
+        linkList.addLast(car2);
+        linkList.addLast(car3);
 
-        Node<Car> searchedCar = ill.find(new Car("Toyota", "GR Yaris", 2022));
-        System.out.println(searchedCar);
+        System.out.println(linkList.size);
+        System.out.println(linkList.removeLast());
+        System.out.println(linkList.size);
 
-        ill.addAfter(searchedCar, car4);
-        System.out.println(ill);
+        System.out.println(linkList);
+        System.out.println(linkList.getFirst());
+        System.out.println(linkList.getLast());
 
-        ill.addBefore(ill.find(new Car("Honda", "Jazz", 2004)), car5);
-        System.out.println(ill);
+        linkList.addLast(car4);
+        linkList.addLast(car5);
 
-        ill.forwardTraverse();
-        ill.reverseTraverse();
+        System.out.println();
 
-        System.out.println(ill.removeFirst());
-        System.out.println(ill.removeLast());
-
-        System.out.println(ill);
-
-        System.out.println(ill.removeAfter(car5));
-
-        System.out.println(ill);
-
-        System.out.println(ill.removeBefore(car2));
-
-        System.out.println(ill);
-
-        System.out.println(ill.remove(new Car("Toyota", "GR Yaris", 2022)));
-
-        System.out.println(ill.isEmpty());
+        System.out.println(linkList);
+        for (Car car : linkList) {
+            System.out.println(car);
+        }
     }
 }
