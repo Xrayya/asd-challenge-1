@@ -88,28 +88,37 @@ public class LinkedListApp {
         // System.out.println(queue);
         // System.out.println(queue.isEmpty());
 
-        LinkList<Car> linkList = new LinkList<>();
+        // LinkList<Car> linkList = new LinkList<>();
+        //
+        // linkList.addLast(car1);
+        // linkList.addLast(car2);
+        // linkList.addLast(car3);
+        //
+        // System.out.println(linkList.size);
+        // System.out.println(linkList.removeLast());
+        // System.out.println(linkList.size);
+        //
+        // System.out.println(linkList);
+        // System.out.println(linkList.getFirst());
+        // System.out.println(linkList.getLast());
+        //
+        // linkList.addLast(car4);
+        // linkList.addLast(car5);
+        //
+        // System.out.println();
+        //
+        // System.out.println(linkList);
+        // for (Car car : linkList) {
+        // System.out.println(car);
+        // }
 
-        linkList.addLast(car1);
-        linkList.addLast(car2);
-        linkList.addLast(car3);
+        // IPriorityList
+        PriorityList<Car> pl = new PriorityList<>();
 
-        System.out.println(linkList.size);
-        System.out.println(linkList.removeLast());
-        System.out.println(linkList.size);
+        pl.enqueue(car3);
+        pl.enqueue(car1);
+        pl.enqueue(car2);
 
-        System.out.println(linkList);
-        System.out.println(linkList.getFirst());
-        System.out.println(linkList.getLast());
-
-        linkList.addLast(car4);
-        linkList.addLast(car5);
-
-        System.out.println();
-
-        System.out.println(linkList);
-        for (Car car : linkList) {
-            System.out.println(car);
-        }
+        System.out.println(pl);
     }
 }
