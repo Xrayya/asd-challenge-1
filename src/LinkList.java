@@ -59,6 +59,8 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
 
     @Override
     public Node<T> addLast(T data) {
+        this.size++;
+
         Node<T> node = new Node<T>(data);
         if (this.head == null && this.tail == null) {
             this.head = node;
@@ -69,13 +71,13 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
         node.prev = this.tail;
         this.tail = node;
 
-        this.size++;
-
         return node;
     }
 
     @Override
     public Node<T> addFirst(T data) {
+        this.size++;
+
         Node<T> node = new Node<T>(data);
         if (this.head == null && this.tail == null) {
             this.head = node;
@@ -86,8 +88,6 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
         node.next = this.head;
         this.head = node;
 
-        this.size++;
-
         return node;
     }
 
@@ -97,14 +97,14 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
             return this.addLast(data);
         }
 
+        this.size++;
+
         Node<T> newNode = new Node<>(data);
 
         node.next.prev = newNode;
         newNode.next = node.next;
         newNode.prev = node;
         node.next = newNode;
-
-        this.size++;
 
         return newNode;
     }
@@ -115,14 +115,14 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
             return this.addFirst(data);
         }
 
+        this.size++;
+
         Node<T> newNode = new Node<>(data);
 
         node.prev.next = newNode;
         newNode.prev = node.prev;
         newNode.next = node;
         node.prev = newNode;
-
-        this.size++;
 
         return null;
     }
@@ -177,15 +177,16 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
         Node<T> tmp = this.head;
 
         if (this.head.equals(this.tail)) {
+            this.size--;
             this.head = this.tail = null;
             return tmp;
         }
 
+        this.size--;
+
         this.head = tmp.next;
         this.head.prev.next = null;
         this.head.prev = null;
-
-        this.size--;
 
         return tmp;
     }
@@ -195,15 +196,16 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
         Node<T> tmp = this.tail;
 
         if (this.head.equals(this.tail)) {
+            this.size--;
             this.head = this.tail = null;
             return tmp;
         }
 
+        this.size--;
+
         this.tail = tmp.prev;
         this.tail.next.prev = null;
         this.tail.next = null;
-
-        this.size--;
 
         return tmp;
     }
@@ -213,6 +215,7 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
         Node<T> tmp = this.find(data);
 
         if (this.head.equals(this.tail)) {
+            this.size--;
             this.head = this.tail = null;
             return tmp;
         }
@@ -223,12 +226,12 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
             return this.removeLast();
         }
 
+        this.size--;
+
         tmp.prev.next = tmp.next;
         tmp.next.prev = tmp.prev;
 
         tmp.next = tmp.prev = null;
-
-        this.size--;
 
         return tmp;
     }
@@ -243,12 +246,12 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
             return this.removeLast();
         }
 
+        this.size--;
+
         tmp.prev.next = tmp.next;
         tmp.next.prev = tmp.prev;
 
         tmp.next = tmp.prev = null;
-
-        this.size--;
 
         return tmp;
     }
@@ -263,12 +266,12 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
             return this.removeFirst();
         }
 
+        this.size--;
+
         tmp.prev.next = tmp.next;
         tmp.next.prev = tmp.prev;
 
         tmp.next = tmp.prev = null;
-
-        this.size--;
 
         return tmp;
     }
@@ -300,8 +303,9 @@ public class LinkList<T> implements ILinkList<T>, IStack<T>, IQueue<T>, Iterable
 
         @Override
         public E next() {
+            Node<E> output = this.currentNode;
             this.currentNode = this.currentNode.next;
-            return this.currentNode.data;
+            return output.data;
         }
     }
 
