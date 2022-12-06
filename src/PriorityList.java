@@ -66,6 +66,12 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
 
     @Override
     public NodeArray<T> dequeue() {
+        if (this.head == this.tail) {
+            NodeArray<T> tmp = this.head;
+            this.head = this.tail = null;
+            return tmp;
+        }
+
         this.swapData(this.head, this.tail);
 
         NodeArray<T> node = this.tail;
@@ -74,19 +80,6 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
         node.prev = null;
 
         this.heapify(this.head.index);
-
-        return node;
-    }
-
-    public NodeArray<T> removeAt(int index) {
-        this.swapData(this.getItemAt(index), this.tail);
-
-        NodeArray<T> node = this.tail;
-        this.tail = (NodeArray<T>) node.prev;
-        this.tail.next = null;
-        node.prev = null;
-
-        this.heapify(index);
 
         return node;
     }
@@ -168,16 +161,19 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
         NodeArray<T> leftChild = this.getLeftChildOf(index);
         NodeArray<T> rightChild = this.getRightChildOf(index);
 
-        if (currentNode.data.compareTo(leftChild.data) > 0) {
-            swapData(currentNode, leftChild);
+        if (leftChild != null) {
+            if (currentNode.data.compareTo(leftChild.data) > 0) {
+                swapData(currentNode, leftChild);
+            }
+            this.shiftDown(leftChild.index);
         }
 
-        if (currentNode.data.compareTo(leftChild.data) > 0) {
-            swapData(currentNode, leftChild);
+        if (rightChild != null) {
+            if (currentNode.data.compareTo(rightChild.data) > 0) {
+                swapData(currentNode, rightChild);
+            }
+            this.shiftDown(rightChild.index);
         }
-
-        this.shiftDown(rightChild.index);
-        this.shiftDown(leftChild.index);
     }
 
     private void swapData(NodeArray<T> node1, NodeArray<T> node2) {
@@ -195,7 +191,7 @@ public class PriorityList<T extends Comparable<T>> implements IPriorityQueue<T>,
 
         @Override
         public boolean hasNext() {
-            return this.currentNode.next != null;
+            return this.currentNode != null;
         }
 
         @Override
